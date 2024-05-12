@@ -15,11 +15,13 @@ const header = () => {
     <>
       <div className="header">
         <center>Todo App</center>
-        {theme === "light-theme" ? (
-          <IoSunnySharp onClick={changeTheme} />
-        ) : (
-          <FaMoon onClick={changeTheme} />
-        )}
+        <span style={{ cursor: "pointer" }}>
+          {theme === "light-theme" ? (
+            <IoSunnySharp onClick={changeTheme} />
+          ) : (
+            <FaMoon onClick={changeTheme} />
+          )}
+        </span>
       </div>
     </>
   );
