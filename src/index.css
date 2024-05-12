@@ -1,0 +1,153 @@
+/* Example: styles.css */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  
+  &.light-theme{
+    background: white;
+    color: black;
+  }
+  &.dark-theme{
+    background: black;
+    color: white;
+  }
+}
+
+.container {
+  padding: 1%;
+  .header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    font-size: 1.5rem;
+  }
+
+  .Add__Todo {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+    padding: 15px 0;
+
+    .Todo__Inputs {
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      padding: 10px 0;
+
+      input {
+        font-size: 1.2rem;
+        width: 45%;
+        padding: 2%;
+        border: 2px solid black;
+        border-radius: 10px;
+        &:active &:focus {
+          border: none;
+          outline: none;
+        }
+      }
+    }
+    button {
+      width: 100px;
+      border-radius: 30px;
+      box-shadow: none;
+      background: linear-gradient(45deg, #03fcbf, #33ff43);
+      color: black;
+    }
+    button:active{
+      box-shadow: inset 0 0 5px #052f09,0 0 20px #33ff43;
+    }
+  }
+  .Todo__Items {
+    width: 100%;
+    /* background: linear-gradient(45deg, #c514ed, #00d8ff); */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+
+    .Todo__Item__Container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 1%;
+      border-radius: 5px;
+      border: 1px solid black;
+      background: #3F51B5;
+      color: white;
+      box-shadow: 0 0 10px #3F51B5;
+
+      .Todo__And__CheckBox {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        width: 80%;
+        div{
+          overflow: auto;
+          white-space: normal;
+          word-wrap: break-word;
+          margin-left: 10px;
+        }
+
+        input[type="checkbox"] {
+          width: 20px;
+          height: 20px;
+          accent-color: #141718;
+          cursor: pointer;
+        }
+      }
+      &.completed {
+        background: #3cdf43;
+        color: black;
+        box-shadow: inset 0 0 10px #41522e;
+      }
+      &.completed .Todo__And__CheckBox {
+        text-decoration: line-through;
+      }
+    }
+  }
+}
+button {
+  cursor: pointer;
+  padding: 8px 22px;
+  background: linear-gradient(45deg, #ff2a2a, #ff2d55);
+  border-radius: 30px;
+  color: white;
+  font-weight: 600;
+  font-size: 1.2rem;
+  border: 2px solid black;
+  transition: 0.1s all ease;
+  &:active {
+    transform: scale(0.9);
+    box-shadow: inset 0 0 5px #ff2a2a,0 0 20px #ff2d55;
+  }
+}
+@media screen and (max-width: 425px) {
+  .container {
+    & .Add__Todo {
+      .Todo__Inputs {
+        flex-direction: column;
+        gap: 10px;
+        input {
+          width: 80%;
+        }
+      }
+    }
+  }
+  button {
+    padding: 5px;
+    font-size: 1rem;
+  }
+}
