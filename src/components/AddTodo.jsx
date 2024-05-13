@@ -11,6 +11,7 @@ function AddTodo() {
   );
   const [todoName, settodoName] = useState("");
   const [todoDate, settodoDate] = useState("");
+  const [todoEditID, settodoEditID] = useState(false);
 
   const CompletedTodo = (id) => {
     settodoList(
@@ -23,14 +24,37 @@ function AddTodo() {
     );
   };
 
-  const DeleteTodo = (id) => {
-    settodoList(todoList.filter((todo) => todo.id !== id));
-  };
-
   useEffect(() => {
     localStorage.setItem("todoList", JSON.stringify(todoList));
   }, [todoList]);
 
+  const DeleteTodo = (id) => {
+    settodoList(todoList.filter((todo) => todo.id !== id));
+  };
+
+  const EditTodo = (id) => {
+    const editedTodo = todoList.find((todo) => todo.id === id);
+
+    settodoEditID(editedTodo.id);
+
+    if (editedTodo) {
+      settodoName(editedTodo.name);
+      settodoDate(editedTodo.date);
+    }
+  };
+  const UpdateTodo = () => {
+    const updatedTodoList = todoList.map((todo) => {
+      if (todo.id === todoEditID) {
+        return { ...todo, name: todoName, date: todoDate };
+      }
+      return todo;
+    });
+    settodoEditID(false);
+    settodoList(updatedTodoList);
+
+    settodoName("");
+    settodoDate("");
+  };
   function addTodo() {
     if (todoName && todoDate) {
       const newTodo = [
@@ -69,13 +93,20 @@ function AddTodo() {
             value={todoDate}
             onChange={handletodoChange}
             className="form-control"
+            placeholder="Enter Todo Date "
             aria-label="Todo-Date"
           />
         </div>
         <div className="Add__Todo_Btn">
-          <button onClick={addTodo} type="button" id="Addtodo">
-            Add
-          </button>
+          {todoEditID ? (
+            <button onClick={UpdateTodo} type="button" id="Edittodo">
+              Update
+            </button>
+          ) : (
+            <button onClick={addTodo} type="button" id="Addtodo">
+              Add
+            </button>
+          )}
         </div>
       </div>
       {todoList.length > 0 ? (
@@ -83,6 +114,7 @@ function AddTodo() {
           todoitems={todoList}
           CompletedTodo={CompletedTodo}
           DeleteTodo={DeleteTodo}
+          EditTodo={EditTodo}
         />
       ) : (
         <center style={{ color: "red", fontSize: "1rem" }}>

@@ -1,11 +1,14 @@
 import TodoItem from "./TodoItem.jsx";
 
-const TodoItems = ({ todoitems, CompletedTodo, DeleteTodo }) => {
+const TodoItems = ({ todoitems, CompletedTodo, DeleteTodo, EditTodo }) => {
   const CompletedTodoID = (id) => {
     CompletedTodo(id);
   };
   const DeleteTodoID = (id) => {
     DeleteTodo(id);
+  };
+  const EditTodoID = (id) => {
+    EditTodo(id);
   };
   return (
     <>
@@ -18,6 +21,7 @@ const TodoItems = ({ todoitems, CompletedTodo, DeleteTodo }) => {
             iscompleted={todo.iscompleted}
             CompletedTodoID={CompletedTodoID}
             DeleteTodoID={DeleteTodoID}
+            EditTodoID={EditTodoID}
             id={todo.id}
           />
         ))}

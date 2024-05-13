@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { MdOutlineDeleteOutline } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
 
 const TodoItem = ({
   todoName,
@@ -7,6 +9,7 @@ const TodoItem = ({
   CompletedTodoID,
   id,
   DeleteTodoID,
+  EditTodoID,
 }) => {
   const [isChecked, setIsChecked] = useState(iscompleted);
   useEffect(() => {
@@ -20,6 +23,9 @@ const TodoItem = ({
 
   const deleteTodo = () => {
     DeleteTodoID(id);
+  };
+  const editTodo = () => {
+    EditTodoID(id);
   };
 
   return (
@@ -42,9 +48,14 @@ const TodoItem = ({
             <p className="todo-date">Date: {todoDate}</p>
           </div>
         </div>
-        <button type="button" className="Delete__Btn" onClick={deleteTodo}>
-          Delete
-        </button>
+        <div className="Edit__Delete__Btns">
+          <button type="button" className="Edit__Btn" onClick={editTodo}>
+            <FaEdit />
+          </button>
+          <button type="button" className="Delete__Btn" onClick={deleteTodo}>
+            <MdOutlineDeleteOutline />
+          </button>
+        </div>
       </div>
     </>
   );

@@ -8,12 +8,12 @@
 }
 body {
   font-family: "Poppins", sans-serif;
-  
-  &.light-theme{
+
+  &.light-theme {
     background: white;
     color: black;
   }
-  &.dark-theme{
+  &.dark-theme {
     background: black;
     color: white;
   }
@@ -21,7 +21,7 @@ body {
 
 .container {
   padding: 1%;
-  .header{
+  .header {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,21 +61,30 @@ body {
       background: linear-gradient(45deg, #03fcbf, #33ff43);
       color: black;
     }
-    button:active{
-      box-shadow: inset 0 0 5px #052f09,0 0 20px #33ff43;
+    button:active {
+      box-shadow: inset 0 0 5px #052f09, 0 0 20px #33ff43;
     }
   }
   .Todo__Items {
     width: 100%;
     /* background: linear-gradient(45deg, #c514ed, #00d8ff); */
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
+    position: relative;
+    padding: 20px;
+    overflow: hidden;
+    border-radius: 18px;
+    transition: 2s ease-out;
+    z-index: 10;
+    background: #232323;
+    outline: 5px solid black;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 3px;
+      border-radius: 15px;
+      background: black;
+      z-index: -2;
+    }
 
     .Todo__Item__Container {
       display: flex;
@@ -84,17 +93,17 @@ body {
       width: 100%;
       padding: 1%;
       border-radius: 5px;
-      border: 1px solid black;
-      background: #3F51B5;
+      border: 2px solid black;
+      background: #3f51b5;
       color: white;
-      box-shadow: 0 0 10px #3F51B5;
+      box-shadow: 0 0 10px #3f51b5;
 
       .Todo__And__CheckBox {
         display: flex;
         justify-content: left;
         align-items: center;
         width: 80%;
-        div{
+        div {
           overflow: auto;
           white-space: normal;
           word-wrap: break-word;
@@ -108,6 +117,12 @@ body {
           cursor: pointer;
         }
       }
+      .Edit__Delete__Btns {
+        display: flex;
+        .Edit__Btn {
+          background: #2196f3;
+        }
+      }
       &.completed {
         background: #3cdf43;
         color: black;
@@ -117,6 +132,14 @@ body {
         text-decoration: line-through;
       }
     }
+  }
+}
+@keyframes Rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 button {
@@ -131,12 +154,26 @@ button {
   transition: 0.1s all ease;
   &:active {
     transform: scale(0.9);
-    box-shadow: inset 0 0 5px #ff2a2a,0 0 20px #ff2d55;
+    box-shadow: inset 0 0 5px #ff2a2a, 0 0 20px #ff2d55;
   }
 }
 @media screen and (max-width: 425px) {
   .container {
+    & .Todo__Items {
+      padding: 15px;
+      & .Todo__Item__Container {
+        & .Todo__And__CheckBox {
+          input[type="checkbox"] {
+            width: 15px;
+            height: 15px;
+          }
+        }
+      }
+    }
     & .Add__Todo {
+      button {
+        padding: 5px;
+      }
       .Todo__Inputs {
         flex-direction: column;
         gap: 10px;
@@ -146,8 +183,9 @@ button {
       }
     }
   }
+
   button {
-    padding: 5px;
+    padding: 2px 6px;
     font-size: 1rem;
   }
 }
