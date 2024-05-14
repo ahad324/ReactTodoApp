@@ -15,7 +15,7 @@ const header = () => {
     <>
       <div className="header">
         <center>Todo App</center>
-        <span style={{ cursor: "pointer" }}>
+        <span className="Theme__Icon">
           {theme === "light-theme" ? (
             <IoSunnySharp onClick={changeTheme} />
           ) : (

@@ -78,24 +78,28 @@ function AddTodo() {
     <>
       <div className="Add__Todo">
         <div className="Todo__Inputs">
-          <input
-            type="text"
-            value={todoName}
-            onChange={handletodoChange}
-            className="form-control"
-            id="todo"
-            placeholder="Enter Todo here"
-            aria-label="Todo-input"
-          />
-          <input
-            type="date"
-            id="date"
-            value={todoDate}
-            onChange={handletodoChange}
-            className="form-control"
-            placeholder="Enter Todo Date "
-            aria-label="Todo-Date"
-          />
+          <span className="Todo__Inputs__Span __Tittle">
+            <label htmlFor="todo">Enter Todo here</label>
+            <input
+              type="text"
+              value={todoName}
+              onChange={handletodoChange}
+              className="form-control"
+              id="todo"
+              aria-label="Todo-input"
+            />
+          </span>
+          <span className="Todo__Inputs__Span __Date">
+            <label htmlFor="date">Enter Todo Date </label>
+            <input
+              type="date"
+              id="date"
+              value={todoDate}
+              onChange={handletodoChange}
+              className="form-control"
+              aria-label="Todo-Date"
+            />
+          </span>
         </div>
         <div className="Add__Todo_Btn">
           {todoEditID ? (
